@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG 14: Life Below Water | My Advocacy Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-blue: #0a192f;
+            --ocean-blue: #1a365d;
+            --teal: #2c7a7b;
+            --coral: #e76f51;
+            --sand: #f4e9cd;
+            --white: #ffffff;
+            --light-blue: #e6f1f5;
+            --text: #2d3748;
+            --highlight: #4299e1;
+            --dark-bg: #0b1a2b;
+            --dark-text: #d4edff;
+            --accent-blue: #4fc3ff;
+            --accent-teal: #2c7a7b;
+            --accent-coral: #e76f51;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Aldrich', sans-serif;
+            background: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ----- GLOBAL BUBBLE CONTAINER ----- */
+        #globalBubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .global-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), rgba(0,200,255,0.08));
+            pointer-events: none;
+            animation: floatUpGlobal linear infinite;
+            bottom: -60px;
+        }
+
+        @keyframes floatUpGlobal {
+            0% { transform: translateY(0) scale(0.7) rotate(0deg); opacity: 0.5; }
+            100% { transform: translateY(-110vh) scale(1.3) rotate(20deg); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(11, 26, 43, 0.98);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(0, 180, 255, 0.2);
+        }
+
+        .nav-brand {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand span {
+            color: var(--accent-blue);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 1px solid rgba(58, 123, 155, 0.5);
+            background: rgba(31, 58, 78, 0.8);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--accent-blue);
+            color: var(--white);
+            transform: scale(1.05);
+            border-color: #66ddff;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, 
+                #87CEEB 0%,
+                #5dade2 20%,
+                #2e86c1 40%,
+                #1a5276 60%,
+                #0a192f 100%
+            );
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: heroGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1); }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.3"/><circle cx="60" cy="40" r="3" fill="white" opacity="0.2"/><circle cx="80" cy="70" r="2" fill="white" opacity="0.4"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.3"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.5;
+            animation: bubbleDrift 20s linear infinite;
+        }
+
+        @keyframes bubbleDrift {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Content Sections */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(10, 30, 50, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 180, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 12px 30px rgba(0, 150, 255, 0.3);
+        }
+
+        .card h2 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 3px solid var(--accent-teal);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .card h3 {
+            color: var(--accent-blue);
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+        }
+
+        /* Image Styling */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.02);
+        }
+
+        .caption {
+            font-style: italic;
+            color: var(--dark-text);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            opacity: 0.8;
+        }
+
+        /* Quote Styling */
+        .quote {
+            background: rgba(231, 111, 81, 0.2);
+            border-left: 5px solid var(--accent-coral);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            animation: quoteGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes quoteGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(231, 111, 81, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(231, 111, 81, 0.4); }
+        }
+
+        .quote cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: var(--accent-coral);
+        }
+
+        /* Video Wrapper */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Action Plan Styling */
+        .action-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .action-list li {
+            background: rgba(0, 180, 255, 0.1);
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-list li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(79, 195, 255, 0.1) 50%, 
+                transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .action-list li:hover::before {
+            transform: translateX(100%);
+        }
+
+        .action-list li:hover {
+            background: rgba(0, 180, 255, 0.2);
+            transform: translateX(10px);
+            border-left-color: var(--accent-coral);
+        }
+
+        .action-list strong {
+            color: var(--accent-blue);
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* GAME STYLES */
+        .game-container {
+            background: linear-gradient(180deg, 
+                #0a192f 0%,
+                #1a365d 30%,
+                #2e86c1 60%,
+                #1a5276 80%,
+                #0d3b66 100%
+            );
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,20,40,0.8);
+            min-height: 550px;
+            border: 3px solid rgba(0, 180, 255, 0.3);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .game-header h3 {
+            color: #ffdd57;
+            font-size: 2rem;
+            text-shadow: 0 0 20px rgba(255, 221, 87, 0.7);
+            letter-spacing: 2px;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 221, 87, 0.7); }
+            50% { text-shadow: 0 0 40px rgba(255, 221, 87, 1); }
+        }
+
+        .game-header p {
+            color: white;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            opacity: 0.9;
+        }
+
+        .game-score-display {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .score-box {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            min-width: 150px;
+        }
+
+        .score-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #cceeff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .score-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffdd57;
+            text-shadow: 0 0 20px rgba(255, 221, 87, 0.7);
+        }
+
+        .game-area {
+            position: relative;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(180deg, 
+                rgba(10, 25, 47, 0.5) 0%,
+                rgba(26, 54, 93, 0.6) 30%,
+                rgba(46, 134, 193, 0.4) 60%,
+                rgba(26, 82, 118, 0.6) 100%
+            );
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            touch-action: none;
+        }
+
+        /* Ocean floor */
+        .ocean-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            background: linear-gradient(180deg, 
+                transparent 0%,
+                rgba(194, 178, 128, 0.4) 40%,
+                rgba(139, 119, 78, 0.7) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Bubbles in game */
+        .game-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(0,200,255,0.1));
+            pointer-events: none;
+            animation: gameBubbleFloat linear infinite;
+            z-index: 3;
+        }
+
+        @keyframes gameBubbleFloat {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.6; }
+            100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+        }
+
+        /* Seaweed in game */
+        .game-seaweed {
+            position: absolute;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 4;
+            animation: seaweedSway 4s ease-in-out infinite;
+        }
+
+        .game-seaweed-1 { left: 8%; height: 90px; width: 10px; }
+        .game-seaweed-2 { left: 18%; height: 65px; width: 8px; animation-delay: -1s; }
+        .game-seaweed-3 { right: 12%; height: 75px; width: 9px; animation-delay: -2s; }
+        .game-seaweed-4 { right: 25%; height: 55px; width: 7px; animation-delay: -3s; }
+        .game-seaweed-5 { left: 35%; height: 45px; width: 6px; animation-delay: -1.5s; }
+
+        .game-seaweed::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(34, 139, 34, 0.8) 0%, 
+                rgba(0, 100, 0, 0.5) 50%,
+                rgba(0, 60, 0, 0.2) 100%);
+            border-radius: 50% 50% 0 0;
+            transform-origin: bottom;
+        }
+
+        @keyframes seaweedSway {
+            0%, 100% { transform: rotate(-8deg) scaleY(1); }
+            25% { transform: rotate(5deg) scaleY(0.95); }
+            50% { transform: rotate(-3deg) scaleY(1.05); }
+            75% { transform: rotate(8deg) scaleY(0.9); }
+        }
+
+        /* Trash Bin - Bottom Center */
+        .trash-bin {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 150px;
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.7));
+        }
+
+        .trash-bin:hover {
+            transform: translateX(-50%) scale(1.1);
+            filter: drop-shadow(0 8px 25px rgba(0,0,0,0.9));
+        }
+
+        .trash-bin.drag-over {
+            transform: translateX(-50%) scale(1.3);
+            filter: drop-shadow(0 0 40px rgba(0, 255, 100, 0.8));
+            animation: binGlow 0.5s ease-in-out infinite;
+        }
+
+        @keyframes binGlow {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(0, 255, 100, 0.6)); }
+            50% { filter: drop-shadow(0 0 50px rgba(0, 255, 100, 0.9)); }
+        }
+
+        .trash-bin-body {
+            width: 100%;
+            height: 75%;
+            background: linear-gradient(180deg, 
+                #4a4a4a 0%, 
+                #3a3a3a 30%, 
+                #2a2a2a 60%,
+                #1a1a1a 100%
+            );
+            border-radius: 15px 15px 20px 20px;
+            position: relative;
+            border: 3px solid #666;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .trash-bin-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 25%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+        }
+
+        .trash-bin-lid {
+            width: 115%;
+            height: 20%;
+            background: linear-gradient(180deg, #666 0%, #444 100%);
+            border-radius: 20px;
+            position: absolute;
+            top: -8%;
+            left: -7.5%;
+            border: 3px solid #888;
+            transform-origin: right center;
+            transition: transform 0.3s ease;
+        }
+
+        .trash-bin.drag-over .trash-bin-lid {
+            transform: rotate(-30deg);
+        }
+
+        .recycle-symbol {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #4caf50;
+            animation: rotateRecycle 4s linear infinite;
+            filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.8));
+        }
+
+        @keyframes rotateRecycle {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .trash-bin-label {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+
+        /* Bottles - Floating across */
+        .bottle {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            cursor: grab;
+            z-index: 10;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 3px 10px rgba(0,0,0,0.6));
+            pointer-events: all;
+        }
+
+        .bottle:hover {
+            transform: scale(1.3);
+            filter: drop-shadow(0 5px 20px rgba(0,0,0,0.9));
+            z-index: 50;
+        }
+
+        .bottle:active {
+            cursor: grabbing;
+            transform: scale(1.4);
+        }
+
+        .bottle.dragging {
+            opacity: 0.8;
+            z-index: 100;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.9));
+            animation: none !important;
+        }
+
+        .bottle-body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            animation: bottleBobbing 3s ease-in-out infinite;
+        }
+
+        .bottle.dragging .bottle-body {
+            animation: none !important;
+        }
+
+        @keyframes bottleBobbing {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(-3deg); }
+            75% { transform: translateY(10px) rotate(3deg); }
+        }
+
+        .bottle-cap {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 14px;
+            border-radius: 4px 4px 0 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+        }
+
+        .bottle-neck {
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 2px;
+        }
+
+        .bottle-shape {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 34px;
+            height: 50px;
+            border-radius: 6px 6px 12px 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottle-shape::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+        }
+
+        .bottle-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 30%;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
+        }
+
+        .bottle.water .bottle-cap { background: #1a73e8; }
+        .bottle.water .bottle-shape { 
+            background: linear-gradient(180deg, 
+                rgba(100, 180, 255, 0.9) 0%, 
+                rgba(0, 100, 200, 0.7) 100%);
+        }
+
+        .bottle.soda .bottle-cap { background: #d32f2f; }
+        .bottle.soda .bottle-shape { 
+            background: linear-gradient(180deg, 
+                rgba(255, 150, 0, 0.9) 0%, 
+                rgba(200, 50, 0, 0.7) 100%);
+        }
+
+        .bottle.juice .bottle-cap { background: #f57c00; }
+        .bottle.juice .bottle-shape { 
+            background: linear-gradient(180deg, 
+                rgba(255, 200, 0, 0.9) 0%, 
+                rgba(200, 150, 0, 0.7) 100%);
+        }
+
+        /* Start Button */
+        .start-game-btn {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-family: 'Aldrich', sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            animation: startButtonPulse 2s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
+        }
+
+        .start-game-btn:hover {
+            background: linear-gradient(135deg, #66bb6a 0%, #388e3c 100%);
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.7);
+        }
+
+        .start-game-btn.hidden {
+            display: none;
+        }
+
+        @keyframes startButtonPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5); }
+            50% { box-shadow: 0 10px 50px rgba(76, 175, 80, 0.8); }
+        }
+
+        /* Game Message */
+        .game-message {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            animation: messagePulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes messagePulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Reset Game Button */
+        .reset-game-btn {
+            background: var(--accent-coral);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-family: 'Aldrich', sans-serif;
+        }
+
+        .reset-game-btn:hover {
+            background: #d55a3a;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(231, 111, 81, 0.4);
+        }
+
+        /* Hyperlink Styling */
+        .resource-link {
+            display: inline-block;
+            background: var(--accent-teal);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 1rem 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .resource-link:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 150, 255, 0.4);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: rgba(11, 26, 43, 0.9);
+            color: var(--dark-text);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 180, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            display: block;
+            animation: pulseStat 2s infinite;
+        }
+
+        @keyframes pulseStat {
+            0% { opacity: 0.9; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); color: var(--accent-coral); }
+            100% { opacity: 0.9; transform: scale(1); }
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            background: var(--accent-coral);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            background: #d55a3a;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(231, 111, 81, 0.4);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(231, 111, 81, 0.15);
+            border: 2px solid var(--accent-coral);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            animation: highlightPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(231, 111, 81, 0.1); }
+            50% { box-shadow: 0 0 30px rgba(231, 111, 81, 0.3); }
+        }
+
+        .highlight-box h3 {
+            color: var(--accent-coral);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 0.3rem;
+            }
+            
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .game-area {
+                height: 300px;
+            }
+            
+            .trash-bin {
+                width: 80px;
+                height: 100px;
+            }
+            
+            .bottle {
+                width: 25px;
+                height: 50px;
+            }
+            
+            .start-game-btn {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+            }
+            
+            .game-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .score-value {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global Bubbles -->
+    <div id="globalBubbles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-brand">🌊 SDG<span>14</span></a>
+        <ul class="nav-links">
+            <li><a href="#intro" class="nav-link active" onclick="navigateTo('intro', this)">Intro</a></li>
+            <li><a href="#analysis" class="nav-link" onclick="navigateTo('analysis', this)">Deep Dive</a></li>
+            <li><a href="#action" class="nav-link" onclick="navigateTo('action', this)">Action Plan</a></li>
+            <li><a href="#reflection" class="nav-link" onclick="navigateTo('reflection', this)">Reflection</a></li>
+            <li><a href="#about" class="nav-link" onclick="navigateTo('about', this)">About Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page 1: Intro -->
+    <div id="intro" class="page active">
+        <div class="hero">
+            <h1>Why the Blue Planet is Bleeding</h1>
+            <p>My Fight for Sustainable Development Goal 14: Life Below Water</p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2>The Community I Belong To</h2>
+                <p>We often think of our communities as our neighborhoods or our schools. But we forget the largest community of all: the global ecosystem. As someone who has grown up near the water, I've always felt a deep connection to the ocean. It is more than just a place to swim; it is the lifeblood of our planet. However, this community is under attack.</p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=800&auto=format&fit=crop" alt="Vibrant coral reef with colorful fish swimming">
+                <div class="caption">A vibrant coral reef bursting with colorful tropical fish and diverse marine life.</div>
+            </div>
+
+            <div class="card">
+                <h2>The Issue</h2>
+                <p>The issue that moves me the most is the devastating amount of plastic pollution and the effects of climate change on our oceans. We are treating the ocean like a garbage dump, and the consequences are no longer invisible. From sea turtles choking on plastic bags to coral reefs turning white and dying, the problem is urgent.</p>
+            </div>
+
+            <div class="card">
+                <h2>My Chosen SDG</h2>
+                <p>This is why I have chosen to advocate for <strong>United Nations Sustainable Development Goal 14: Life Below Water</strong>. This goal isn't just about saving fish; it is about conserving and sustainably using the oceans, seas, and marine resources for sustainable development. It is about acknowledging that human life on Earth depends on the health of the ocean.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Why I Am Passionate</h3>
+                <p>I am passionate about this SDG because the ocean produces over half of the world's oxygen. Every second breath we take comes from the ocean. It is not a distant, abstract concept; it is a part of us. When we protect the ocean, we are protecting our future, our climate, and our survival.</p>
+            </div>
+
+            <div class="card">
+                <h2>Who Does This Impact?</h2>
+                <p>This impacts everyone. It impacts the fisherman whose livelihood is disappearing, the coastal communities facing rising sea levels, and the teenager who dreams of exploring a healthy, vibrant reef. It impacts you, even if you live far from the coast, because the health of the ocean dictates our global weather patterns and the air we breathe.</p>
+            </div>
+
+            <div class="quote">
+                "The sea, once it casts its spell, holds one in its net of wonder forever."
+                <cite>- Jacques Cousteau, Ocean Explorer</cite>
+            </div>
+
+            <div class="card">
+                <h2>What If We Fail?</h2>
+                <p>If we fail to achieve SDG 14, our future looks grim. Scientists predict that by 2050, there could be more plastic in the ocean than fish (by weight). We face a future of dead zones—areas of the ocean with so little oxygen that nothing can survive—expanding rapidly. Coral reefs, which support 25% of all marine life, could be virtually extinct within a generation. This isn't just an environmental issue; it's a humanitarian crisis.</p>
+                <a href="#analysis" class="btn" onclick="navigateTo('analysis')">Explore the Evidence →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Analysis (Deep Dive) -->
+    <div id="analysis" class="page">
+        <div class="hero">
+            <h1>The Evidence</h1>
+            <p>Key Facts and Problems Related to SDG 14</p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2>Why Does it Matter?</h2>
+                <p>The ocean is facing a triple threat: <strong>Pollution, Overfishing, and Climate Change.</strong></p>
+                
+                <h3>1. Plastic Pollution</h3>
+                <p>The most visible issue. An estimated 8 million metric tons of plastic enter the ocean every year. This plastic doesn't decompose; it breaks down into microplastics that enter the food chain, ending up on our dinner plates.</p>
+                
+                <h3>2. Overfishing</h3>
+                <p>Over 30% of the world's fish stocks are overexploited. This means we are catching fish faster than they can reproduce, disrupting the entire food web and threatening global food security.</p>
+                
+                <h3>3. Ocean Acidification & Warming</h3>
+                <p>The ocean absorbs about 30% of the carbon dioxide we release into the atmosphere. This is causing the ocean to become more acidic, which dissolves the shells of shellfish and bleaches coral reefs. Warming waters are also driving marine species away from their natural habitats, disrupting ecosystems.</p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=800&auto=format&fit=crop" alt="Sea turtle swimming in ocean water">
+                <div class="caption">A sea turtle swimming through the ocean. Marine life like this is directly threatened by plastic pollution and ocean degradation.</div>
+            </div>
+
+            <!-- VIDEO SECTION - Plays directly on the website -->
+            <div class="card">
+                <h2>🎥 Educational Video</h2>
+                <p>Watch this video to learn more about the importance of our oceans.</p>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/u-l3KfmFNx0?si=84_zI5uy1PGdhOpC" 
+                        title="SDG 14: Life Below Water" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Key Facts & Evidence</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">50%</span>
+                        <span class="stat-label">of the world's oxygen comes from the ocean</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">of excess heat from global warming is absorbed by the ocean</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">3B+</span>
+                        <span class="stat-label">people rely on marine biodiversity for their livelihoods</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">50%</span>
+                        <span class="stat-label">of coral reefs have already been lost</span>
+                    </div>
+                </div>
+                <p>If global temperatures rise by 1.5°C, we could lose up to 90% of our coral reefs. These ecosystems are essential for marine life, coastal protection, and even medical research.</p>
+            </div>
+
+            <a href="https://www.un.org/sustainabledevelopment/oceans/" target="_blank" class="resource-link">🔗 UN Official SDG 14 Page</a>
+            <a href="https://www.worldwildlife.org/initiatives/oceans" target="_blank" class="resource-link">🔗 WWF Ocean Conservation</a>
+
+            <div class="quote">
+                "The ocean is the blue heart of our planet, and it is in critical condition."
+                <cite>- Dr. Sylvia Earle, Marine Biologist</cite>
+            </div>
+
+            <div class="card">
+                <h2>Why We Should Care</h2>
+                <p>We should care because this is not someone else's problem. It is our problem. It affects the global economy, the climate, and the food we eat. The ocean is a shared resource, and its degradation threatens the stability of our entire planet. If the ocean dies, we die with it.</p>
+                <a href="#action" class="btn" onclick="navigateTo('action')">See My Action Plan →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Action Plan (WITH GAME) -->
+    <div id="action" class="page">
+        <div class="hero">
+            <h1>🌊 Turning the Tide</h1>
+            <p>My Action Plan to Help Achieve SDG 14</p>
+        </div>
+        
+        <div class="content">
+            <!-- GAME SECTION -->
+            <div class="game-container">
+                <div class="game-header">
+                    <h3>🧹 YOUR ACTION NEEDED!</h3>
+                    <p>Drag the floating plastic bottles into the recycling bin!</p>
+                </div>
+                
+                <div class="game-score-display">
+                    <div class="score-box">
+                        <span class="score-label">⚖️ Weight (kg)</span>
+                        <span class="score-value" id="weightScore">0</span>
+                    </div>
+                    <div class="score-box">
+                        <span class="score-label">🍾 Bottles Recycled</span>
+                        <span class="score-value" id="bottlesScore">0</span>
+                    </div>
+                </div>
+                
+                <div class="game-area" id="gameArea">
+                    <!-- Ocean floor -->
+                    <div class="ocean-floor"></div>
+                    
+                    <!-- Seaweed -->
+                    <div class="game-seaweed game-seaweed-1"></div>
+                    <div class="game-seaweed game-seaweed-2"></div>
+                    <div class="game-seaweed game-seaweed-3"></div>
+                    <div class="game-seaweed game-seaweed-4"></div>
+                    <div class="game-seaweed game-seaweed-5"></div>
+                    
+                    <!-- Trash Bin -->
+                    <div class="trash-bin" id="trashBin">
+                        <div class="trash-bin-body">
+                            <div class="trash-bin-lid"></div>
+                            <span class="recycle-symbol">♻️</span>
+                            <span class="trash-bin-label">RECYCLE</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Start Button -->
+                    <button class="start-game-btn" id="startGameBtn" onclick="startGame()">
+                        🎮 START GAME
+                    </button>
+                </div>
+                
+                <div class="game-message" id="gameMessage">
+                    🎯 Press START to begin cleaning the ocean!
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button class="reset-game-btn" onclick="resetGame()">🔄 Reset Game</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💪 No Action is Too Small</h2>
+                <p>We can't just talk about the problem; we have to act. Here is my practical, achievable action plan to help achieve SDG 14. I believe that collective small actions lead to massive change.</p>
+            </div>
+
+            <div class="card">
+                <h2>🎯 My Actions</h2>
+                <ul class="action-list">
+                    <li>
+                        <strong>🌊 The "Plastic-Free Week" Challenge</strong>
+                        I will commit to a week (and then hopefully more) of zero single-use plastic. I will document this journey on social media to raise awareness and encourage my peers to join me.
+                        <br><em>📅 When:</em> Starting the first Monday of next month.
+                        <br><em>📍 Where:</em> School and home.
+                    </li>
+                    <li>
+                        <strong>🏖️ Local Beach/River Cleanup</strong>
+                        I will organize a local cleanup event at a nearby park and beach with my classmates and friends.
+                        <br><em>📅 When:</em> Saturday, [Specific Date] at 10:00 AM.
+                        <br><em>🎯 Goal:</em> Collect waste and properly log it to understand the main sources of local pollution.
+                    </li>
+                    <li>
+                        <strong>📢 Advocacy Through Education</strong>
+                        I will use this website as a permanent resource. I will also create a short presentation for my school's morning assembly to educate students about the importance of the ocean and how their choices matter.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🤝 Actions I Want Others to Take</h2>
+                <ul class="action-list">
+                    <li>
+                        <strong>🛒 Vote with Your Wallet</strong>
+                        Stop buying single-use plastics like water bottles and plastic bags. Invest in a reusable bottle and tote bag.
+                    </li>
+                    <li>
+                        <strong>🐟 Eat Sustainable Seafood</strong>
+                        Use a guide like the Monterey Bay Aquarium's Seafood Watch to make choices that don't contribute to overfishing.
+                    </li>
+                    <li>
+                        <strong>📚 Educate Yourself and Others</strong>
+                        Watch documentaries like <em>Chasing Coral</em> or <em>Seaspiracy</em>. Talk to your family about what you've learned.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🌟 What I Can Accomplish</h3>
+                <p>I know I can't clean the entire ocean by myself. But I can change the habits of my family, my friends, and my school community. By focusing on local action, I can create a ripple effect. The specific goal is to reduce the amount of single-use plastic used in my household by 50% over the next three months and to successfully hold one community cleanup event.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#reflection" class="btn" onclick="navigateTo('reflection')">Read My Reflection →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Reflection -->
+    <div id="reflection" class="page">
+        <div class="hero">
+            <h1>What I've Learned</h1>
+            <p>A Journey Below the Surface</p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2>My Research Reflection</h2>
+                
+                <h3>My Learning Journey</h3>
+                <p>When I started this project, I knew plastic was bad and oceans were warming. But I didn't understand the scale. I didn't realize that the ocean was the primary regulator of our climate, or that the food I eat might contain microplastics. This research has been a wake-up call.</p>
+                
+                <h3>About Myself</h3>
+                <p>I learned that I am someone who is deeply affected by visual stories. Seeing the images of bleached coral reefs and animals tangled in plastic moved me in a way that raw data never could. This made me realize that the best way for me to advocate for this issue is through storytelling and showing people the reality of what is happening beneath the surface.</p>
+            </div>
+
+            <div class="card">
+                <h3>Challenges & New Perspectives</h3>
+                <p>The biggest challenge I faced was feeling overwhelmed. The problem seems so massive, and the solutions seem so small. However, I have come to understand that every massive change starts with individual actions. I've shifted from a mindset of "What difference can I make?" to "What difference will I make today?" I now see that true change comes from a collective of individuals who decide to care.</p>
+            </div>
+
+            <div class="quote">
+                "In the end, we will conserve only what we love; we will love only what we understand; and we will understand only what we are taught."
+                <cite>- Baba Dioum, Environmentalist</cite>
+            </div>
+
+            <a href="#about" class="btn" onclick="navigateTo('about')">Learn About Me →</a>
+        </div>
+    </div>
+
+    <!-- Page 5: About -->
+    <div id="about" class="page">
+        <div class="hero">
+            <h1>About the Advocate</h1>
+            <p>Who I Am and Why I Care</p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2>My Biography</h2>
+                <p>Hi! I'm a Grade 9 student with a deep appreciation for our planet's natural wonders. My interests include snorkeling, hiking, photography, marine biology, and video games. I am particularly interested in design and communication—skills that have become essential tools in my advocacy work.</p>
+                
+                <h3>My Skills & Interests</h3>
+                <p>I enjoy creative problem-solving and using technology to tell compelling stories. Whether it's through photography, web design, or social media, I believe in the power of visual communication to inspire change.</p>
+                
+                <h3>How I Use My Skills</h3>
+                <p>My interest in design and communication has been the most valuable tool in this project. I have used it to build this website and to think carefully about how to present information in a way that is not just factual, but also emotionally engaging and persuasive. I believe that a well-told story is more powerful than a list of facts.</p>
+                
+                <h3>Project Overview</h3>
+                <p>This project is an advocacy campaign for SDG 14: Life Below Water. It is designed to educate my peers about the critical state of our oceans and inspire them to take action. Through research, storytelling, and practical action plans, I hope to create a ripple effect of positive change in my community.</p>
+                
+                <h3>My Goal</h3>
+                <p>My goal is to continue developing these communication skills to become a better advocate for the environment. This project is not just a school assignment for me; it is the first step in my journey to becoming a more active and responsible global citizen. I hope this website has inspired you to join me in protecting our blue planet.</p>
+            </div>
+            
+            <div class="card" style="text-align:center;">
+                <h2>Thank You for Visiting</h2>
+                <p>Together, we can make a difference for our oceans.</p>
+                <a href="#intro" class="btn" onclick="navigateTo('intro')">Back to Top ↑</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate bubbles
+        (function() {
+            const bubbleContainer = document.getElementById('globalBubbles');
+            const bubbleCount = 28;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'global-bubble';
+                const size = 10 + Math.random() * 35;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDuration = 12 + Math.random() * 25 + 's';
+                bubble.style.animationDelay = Math.random() * 20 + 's';
+                bubble.style.opacity = 0.2 + Math.random() * 0.4;
+                bubbleContainer.appendChild(bubble);
+            }
+        })();
+
+        function navigateTo(pageId, linkElement) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (linkElement) {
+                linkElement.classList.add('active');
+            } else {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#' + pageId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // GAME LOGIC
+        let totalWeight = 0;
+        let bottlesRecycled = 0;
+        let gameRunning = false;
+        let bottleSpawnInterval;
+        let activeAnimations = new Map();
+
+        function startGame() {
+            gameRunning = true;
+            document.getElementById('startGameBtn').classList.add('hidden');
+            document.getElementById('gameMessage').textContent = '🎯 Drag bottles to the bin! Each bottle = 0.05 kg';
+            spawnBottle();
+            bottleSpawnInterval = setInterval(spawnBottle, 2500);
+        }
+
+        function spawnBottle() {
+            if (!gameRunning) return;
+            
+            const gameArea = document.getElementById('gameArea');
+            const bottle = document.createElement('div');
+            bottle.className = 'bottle';
+            
+            const types = ['water', 'soda', 'juice'];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            bottle.classList.add(randomType);
+            
+            const fromLeft = Math.random() > 0.5;
+            const startX = fromLeft ? -50 : gameArea.clientWidth + 50;
+            const randomY = Math.random() * (gameArea.clientHeight - 150) + 20;
+            
+            bottle.style.left = startX + 'px';
+            bottle.style.top = randomY + 'px';
+            
+            bottle.innerHTML = `
+                <div class="bottle-body">
+                    <div class="bottle-cap"></div>
+                    <div class="bottle-neck"></div>
+                    <div class="bottle-shape">
+                        <div class="bottle-label"></div>
+                    </div>
+                </div>
+            `;
+            
+            bottle.setAttribute('draggable', 'true');
+            bottle.addEventListener('dragstart', handleDragStart);
+            bottle.addEventListener('dragend', handleDragEnd);
+            
+            gameArea.appendChild(bottle);
+            
+            const direction = fromLeft ? 1 : -1;
+            const duration = 8000 + Math.random() * 4000;
+            const targetX = fromLeft ? gameArea.clientWidth + 50 : -50;
+            const startPosX = startX;
+            const startTime = performance.now();
+            
+            function animateBottle(timestamp) {
+                if (!bottle.parentNode || bottle.classList.contains('dragging')) {
+                    activeAnimations.delete(bottle);
+                    return;
+                }
+                
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                if (progress < 1) {
+                    const currentX = startPosX + (targetX - startPosX) * progress;
+                    bottle.style.left = currentX + 'px';
+                    activeAnimations.set(bottle, requestAnimationFrame(animateBottle));
+                } else {
+                    if (bottle.parentNode) {
+                        bottle.remove();
+                    }
+                    activeAnimations.delete(bottle);
+                }
+            }
+            
+            activeAnimations.set(bottle, requestAnimationFrame(animateBottle));
+        }
+
+        function handleDragStart(e) {
+            if (!gameRunning) return;
+            
+            this.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', 'bottle');
+            e.dataTransfer.effectAllowed = 'move';
+            window.draggedBottle = this;
+            
+            const animId = activeAnimations.get(this);
+            if (animId) {
+                cancelAnimationFrame(animId);
+                activeAnimations.delete(this);
+            }
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            
+            if (window.draggedBottle === this && this.parentNode) {
+                const gameArea = document.getElementById('gameArea');
+                const currentX = parseFloat(this.style.left);
+                const direction = currentX < gameArea.clientWidth / 2 ? 1 : -1;
+                const targetX = direction > 0 ? gameArea.clientWidth + 50 : -50;
+                const duration = 6000 + Math.random() * 3000;
+                const startTime = performance.now();
+                const startPosX = currentX;
+                
+                const bottleRef = this;
+                
+                function resumeAnimation(timestamp) {
+                    if (!bottleRef.parentNode || bottleRef.classList.contains('dragging')) {
+                        activeAnimations.delete(bottleRef);
+                        return;
+                    }
+                    
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    if (progress < 1) {
+                        const newX = startPosX + (targetX - startPosX) * progress;
+                        bottleRef.style.left = newX + 'px';
+                        activeAnimations.set(bottleRef, requestAnimationFrame(resumeAnimation));
+                    } else {
+                        if (bottleRef.parentNode) {
+                            bottleRef.remove();
+                        }
+                        activeAnimations.delete(bottleRef);
+                    }
+                }
+                
+                activeAnimations.set(this, requestAnimationFrame(resumeAnimation));
+            }
+            
+            window.draggedBottle = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            document.getElementById('trashBin').classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            document.getElementById('trashBin').classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            document.getElementById('trashBin').classList.remove('drag-over');
+            
+            const draggedBottle = window.draggedBottle;
+            if (draggedBottle && gameRunning) {
+                totalWeight += 0.05;
+                bottlesRecycled++;
+                
+                document.getElementById('weightScore').textContent = totalWeight.toFixed(2);
+                document.getElementById('bottlesScore').textContent = bottlesRecycled;
+                
+                const messages = [
+                    '🎉 Great job! Keep cleaning!',
+                    '🌊 The ocean thanks you!',
+                    '♻️ Every bottle counts!',
+                    '💪 You are making a difference!',
+                    '🐟 Marine life appreciates you!',
+                    '🌟 Amazing work!',
+                    '🏆 Ocean hero!',
+                    '💙 Cleaner oceans, happier planet!'
+                ];
+                document.getElementById('gameMessage').textContent = messages[Math.floor(Math.random() * messages.length)];
+                
+                const animId = activeAnimations.get(draggedBottle);
+                if (animId) {
+                    cancelAnimationFrame(animId);
+                    activeAnimations.delete(draggedBottle);
+                }
+                
+                draggedBottle.remove();
+                window.draggedBottle = null;
+            }
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            clearInterval(bottleSpawnInterval);
+            
+            activeAnimations.forEach((animId) => {
+                cancelAnimationFrame(animId);
+            });
+            activeAnimations.clear();
+            
+            totalWeight = 0;
+            bottlesRecycled = 0;
+            
+            document.getElementById('weightScore').textContent = '0';
+            document.getElementById('bottlesScore').textContent = '0';
+            document.getElementById('gameMessage').textContent = '🎯 Press START to begin cleaning the ocean!';
+            document.getElementById('startGameBtn').classList.remove('hidden');
+            
+            const existingBottles = document.querySelectorAll('.bottle');
+            existingBottles.forEach(bottle => bottle.remove());
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('intro').classList.add('active');
+            
+            const gameArea = document.getElementById('gameArea');
+            const trashBin = document.getElementById('trashBin');
+            
+            trashBin.addEventListener('dragover', handleDragOver);
+            trashBin.addEventListener('dragleave', handleDragLeave);
+            trashBin.addEventListener('drop', handleDrop);
+            
+            gameArea.addEventListener('dragover', (e) => e.preventDefault());
+            gameArea.addEventListener('drop', (e) => e.preventDefault());
+            
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'game-bubble';
+                const size = 5 + Math.random() * 20;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.bottom = Math.random() * 50 + '%';
+                bubble.style.animationDuration = 5 + Math.random() * 10 + 's';
+                bubble.style.animationDelay = Math.random() * 10 + 's';
+                gameArea.appendChild(bubble);
+            }
+            
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                const targetPage = document.getElementById(hash);
+                if (targetPage) {
+                    navigateTo(hash);
+                }
+            }
+        });
+
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                navigateTo(hash);
+            }
+        });
+    </script>
+
+</body>
+</html>
