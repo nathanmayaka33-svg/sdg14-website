@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDG 14: Life Below Water | My Advocacy Project</title>
+    <title>Project Blue Planet | SDG 14: Life Below Water</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
@@ -85,7 +85,7 @@
 
         .nav-brand {
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             text-decoration: none;
             letter-spacing: 1px;
@@ -96,7 +96,22 @@
 
         .nav-brand span {
             color: var(--accent-blue);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+        }
+
+        .nav-brand .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .nav-brand .brand-title small {
+            font-size: 0.65rem;
+            font-weight: normal;
+            opacity: 0.7;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
         }
 
         .nav-links {
@@ -180,12 +195,51 @@
             100% { transform: translateY(-100px); }
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        /* Hero brand (emoji + title + subtitle) — same style as nav brand */
+        .hero-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             position: relative;
             z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-brand .hero-emoji {
+            font-size: 3.5rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+            animation: emojiFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes emojiFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .hero-brand .hero-brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+            text-align: left;
+        }
+
+        .hero-brand .hero-brand-title h1 {
+            font-size: 3rem;
+            margin-bottom: 0.3rem;
             text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero-brand .hero-brand-title small {
+            font-size: 0.9rem;
+            font-weight: normal;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         .hero p {
@@ -993,8 +1047,33 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            .hero-brand {
+                gap: 10px;
+            }
+
+            .hero-brand .hero-emoji {
+                font-size: 2.3rem;
+            }
+
+            .hero-brand .hero-brand-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-brand .hero-brand-title small {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .nav-brand {
+                font-size: 1rem;
+            }
+            
+            .nav-brand .brand-title small {
+                font-size: 0.55rem;
             }
             
             .nav-links {
@@ -1050,7 +1129,13 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#" class="nav-brand">🌊 SDG<span>14</span></a>
+        <a href="#" class="nav-brand">
+            <span>🌊</span>
+            <div class="brand-title">
+                Project Blue Planet
+                <small>SDG 14 · Life Below Water</small>
+            </div>
+        </a>
         <ul class="nav-links">
             <li><a href="#intro" class="nav-link active" onclick="navigateTo('intro', this)">Intro</a></li>
             <li><a href="#analysis" class="nav-link" onclick="navigateTo('analysis', this)">Deep Dive</a></li>
@@ -1063,7 +1148,13 @@
     <!-- Page 1: Intro -->
     <div id="intro" class="page active">
         <div class="hero">
-            <h1>Why the Blue Planet is Bleeding</h1>
+            <div class="hero-brand">
+                <div class="hero-emoji">🌍</div>
+                <div class="hero-brand-title">
+                    <h1>Project Blue Planet</h1>
+                    <small>Why the Blue Planet is Bleeding</small>
+                </div>
+            </div>
             <p>My Fight for Sustainable Development Goal 14: Life Below Water</p>
         </div>
         
