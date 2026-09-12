@@ -242,6 +242,40 @@
             margin-bottom: 1rem;
         }
 
+        /* Skill Grid */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .skill-box {
+            background: rgba(0, 180, 255, 0.1);
+            padding: 1.2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+
+        .skill-box:hover {
+            background: rgba(0, 180, 255, 0.2);
+            transform: translateX(5px);
+            border-left-color: var(--accent-coral);
+        }
+
+        .skill-box strong {
+            color: var(--accent-blue);
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .skill-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
         /* Image Styling */
         .image-container {
             margin: 2rem 0;
@@ -1104,7 +1138,7 @@
                 <div class="caption">A sea turtle swimming through the ocean. Marine life like this is directly threatened by plastic pollution and ocean degradation.</div>
             </div>
 
-            <!-- VIDEO SECTION - Plays directly on the website -->
+            <!-- VIDEO SECTION -->
             <div class="card">
                 <h2>🎥 Educational Video</h2>
                 <p>Watch this video to learn more about the importance of our oceans.</p>
@@ -1311,27 +1345,57 @@
     <div id="about" class="page">
         <div class="hero">
             <h1>About the Advocate</h1>
-            <p>Who I Am and Why I Care</p>
+            <p>Nathan · Grade 9</p>
         </div>
         
         <div class="content">
             <div class="card">
-                <h2>My Biography</h2>
-                <p>Hi! I'm a Grade 9 student with a deep appreciation for our planet's natural wonders. My interests include snorkeling, hiking, photography, marine biology, and video games. I am particularly interested in design and communication—skills that have become essential tools in my advocacy work.</p>
-                
-                <h3>My Skills & Interests</h3>
-                <p>I enjoy creative problem-solving and using technology to tell compelling stories. Whether it's through photography, web design, or social media, I believe in the power of visual communication to inspire change.</p>
-                
-                <h3>How I Use My Skills</h3>
-                <p>My interest in design and communication has been the most valuable tool in this project. I have used it to build this website and to think carefully about how to present information in a way that is not just factual, but also emotionally engaging and persuasive. I believe that a well-told story is more powerful than a list of facts.</p>
-                
-                <h3>Project Overview</h3>
-                <p>This project is an advocacy campaign for SDG 14: Life Below Water. It is designed to educate my peers about the critical state of our oceans and inspire them to take action. Through research, storytelling, and practical action plans, I hope to create a ripple effect of positive change in my community.</p>
-                
-                <h3>My Goal</h3>
-                <p>My goal is to continue developing these communication skills to become a better advocate for the environment. This project is not just a school assignment for me; it is the first step in my journey to becoming a more active and responsible global citizen. I hope this website has inspired you to join me in protecting our blue planet.</p>
+                <h2>Hey, I'm Nathan</h2>
+                <p>I play football most days after school, and when I'm not doing that, I'm usually outside — going for walks or just sitting by a lake. I got into environmental stuff a few years ago after noticing how polluted the creek near my house was. That led me to start reading more about conservation and sustainability.</p>
             </div>
-            
+
+            <div class="card">
+                <h2>Skills & Interests</h2>
+                <div class="skill-grid">
+                    <div class="skill-box">
+                        <strong>⚽ Football</strong>
+                        <p>I play regularly. It's taught me teamwork, communication, and how to deal with losing without making excuses.</p>
+                    </div>
+                    <div class="skill-box">
+                        <strong>👀 Observation</strong>
+                        <p>I notice changes in local wildlife, weather, and water quality. I pay attention to what's actually happening around me.</p>
+                    </div>
+                    <div class="skill-box">
+                        <strong>🔍 Research</strong>
+                        <p>I can find reliable information and sort through bias to get to what matters.</p>
+                    </div>
+                    <div class="skill-box">
+                        <strong>🎤 Presenting</strong>
+                        <p>I can explain complex topics without boring people to death.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>How I Use These Skills</h2>
+                <p>Mostly through school projects and group work. Football helps with the teamwork side — I know how to listen, take a role, and not make everything about me. In class, I try to apply what I learn to real situations. For example, I researched local water quality for a science assignment and found the results weren't great. That made the issue feel less abstract.</p>
+            </div>
+
+            <div class="card">
+                <h2>📘 My Project Overview: SDG 14 (Life Below Water)</h2>
+                <p>I did a project on UN Sustainable Development Goal 14 for geography. The goal is to conserve and sustainably use the ocean and its resources.</p>
+            </div>
+
+            <div class="card">
+                <h2>What I Did</h2>
+                <p>I made a presentation and ran a short workshop for my class. I focused on plastic pollution, overfishing, and coral bleaching. Instead of just listing statistics, I showed how everyday items connect to ocean damage.</p>
+            </div>
+
+            <div class="card">
+                <h2>My Goal</h2>
+                <p>The main point I wanted to get across was that the ocean isn't some far-off problem — it affects everyone, and small choices add up. I wanted people to walk away thinking about their own habits, not just feeling bad about the state of the world. If even a few people started making small changes, that would be enough.</p>
+            </div>
+
             <div class="card" style="text-align:center;">
                 <h2>Thank You for Visiting</h2>
                 <p>Together, we can make a difference for our oceans.</p>
